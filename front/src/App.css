@@ -1,3 +1,117 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Sorts Mill Goudy", serif;
+}
+
+@import url("https://fonts.googleapis.com/css2?family=Mea+Culpa&family=Syncopate:wght@400;700&family=Sorts+Mill+Goudy&display=swap");
+/* @import url('https://fonts.googleapis.com/css2?family=Sorts+Mill+Goudy&display=swap'); */
+/* font-family: 'Syncopate', sans-serif; */
+/* font-family: 'Mea Culpa', cursive; */
+/* font-family: 'Sorts Mill Goudy', serif; */
+
+/* MOBILE */
+
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  background-color: #0fcef8;
+  height: 120px;
+  margin: 20px;
+  color: white;
+  align-items: center;
+  align-content: center;
+  font-weight: 600;
+  font-size: large;
+  font-family: "Syncopate", sans-serif;
+}
+
+.logo_container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.logo {
+  width: 27px;
+  height: 38px;
+  margin: 14px;
+}
+
+.logo_text {
+  font-family: "Mea Culpa", cursive;
+  font-size: 40px;
+  height: 40px;
+  margin-top: 15px;
+  font-family: "Syncopate", sans-serif;
+}
+
+/* .toolbar div {
+  display: flex;
+  flex-direction: row;
+} */
+
+.links {
+  display: flex;
+  margin: 10px;
+  width: 100%;
+  flex-flow: row;
+
+  /* align-self: center; */
+  justify-content: center;
+  /* justify-items: center; */
+  align-items: center;
+}
+
+.link {
+  color: white;
+  text-decoration: none;
+  margin: 10px;
+  padding: 10px 10px;
+  font-weight: 700;
+  font-size: small;
+  font-family: "Syncopate", sans-serif;
+}
+
+input,
+button {
+  border: #0fcef8 1px solid;
+  margin: 1px;
+}
+
+button {
+  color: white;
+  background-color: #6abed1;
+  font-family: "Syncopate", sans-serif;
+  font-size: x-small;
+  font-weight: 600;
+  padding: 5px;
+}
+
+.form {
+  margin-top: 50px;
+}
+
+/* .logo {
+  padding-right: Calc(100vw / 3 + 1vw);
+} */
+
+/* .search-box {
+  padding-left: Calc(100vw / 3 + 1vw);
+} */
+
+.loginRegisterPage {
+  background-image: url("./images/bg.png");
+  height: 500px; /* You must set a specified height */
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Do not repeat the image */
+  background-size: cover;
+  background-color: white;
+}
+
+/* =================================================================================================== */
+
 .d-flex {
   display: flex;
 }
@@ -6,7 +120,7 @@
   justify-content: center;
 }
 
-.column  {
+.column {
   flex-direction: column;
 }
 
@@ -38,24 +152,20 @@
   width: 100%;
 }
 
-img {
+/* img {
   border-radius: 50%;
   height: 300px;
-}
+} */
 
 .box {
   height: 300px;
   width: 300px;
 }
 
-.toolbar {
-  padding: 20px;
-  background-color: #f3f3f3;
-}
-
+/* 
 .toolbar a {
   margin-right: 20px;
-}
+} */
 
 .w300 {
   width: 300px;

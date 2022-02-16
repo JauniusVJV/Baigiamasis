@@ -1,39 +1,65 @@
-import './App.css';
+import "./App.css";
 
-import {useState} from "react";
+import { useState } from "react";
 import MainContext from "./context/MainContext";
-import {BrowserRouter, Routes, Route} from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Toolbar from "./comps/Toolbar";
+
+import LoginPage from "./Pages/LoginPage";
+
 import CreatePostPage from "./Pages/CreatePostPage";
 import SingleProductPage from "./Pages/SingleProductPage";
 import MainPage from "./Pages/MainPage";
 import CartPage from "./Pages/CartPage";
 
 function App() {
-    const [allProducts, setProducts] = useState([])
-    const [getCart, setCart] = useState([])
+  const [activePage, setActivePage] = useState([]);
+  const [loggedIn, setLoggedIn] = useState([false]);
 
+  const [allProducts, setProducts] = useState([]);
+  const [getCart, setCart] = useState([]);
 
-    return (
-        <MainContext.Provider value={{getCart, setCart}}>
-            <BrowserRouter>
-                <Toolbar getCart={getCart}/>
-                <Routes>
+  return (
+    <MainContext.Provider
+      value={{
+        getCart,
+        setCart,
+        activePage,
+        setActivePage,
+        setLoggedIn,
+        loggedIn,
+      }}
+    >
+      <BrowserRouter>
+        <Toolbar />
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <LoginPage />
+              //   <MainPage allProducts={allProducts} setProducts={setProducts} />
+            }
+          />
 
-                    <Route path="/" element={<MainPage allProducts={allProducts} setProducts={setProducts}/>} />
-                    <Route path="/create" element={<CreatePostPage/>} />
-                    <Route path="/product/:id" element={<SingleProductPage getCart={getCart} setCart={setCart}/>} />
-                    <Route path="/cart" element={<CartPage/>} />
-
-                </Routes>
-
-            </BrowserRouter>
-        </MainContext.Provider>
-    );
+          <Route
+            path="/"
+            element={
+              <MainPage allProducts={allProducts} setProducts={setProducts} />
+            }
+          />
+          <Route path="/create" element={<CreatePostPage />} />
+          <Route
+            path="/product/:id"
+            element={<SingleProductPage getCart={getCart} setCart={setCart} />}
+          />
+          <Route path="/cart" element={<CartPage />} />
+        </Routes>
+      </BrowserRouter>
+    </MainContext.Provider>
+  );
 }
 
 export default App;
-
 
 // create application where user can upload products
 // user should add product info in front-end and send data to back-and to upload it in mongodb
