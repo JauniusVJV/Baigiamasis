@@ -31,6 +31,7 @@
   display: flex;
   justify-content: center;
   width: 100%;
+  padding-top: 10px;
 }
 
 .logo {
@@ -54,7 +55,7 @@
 
 .links {
   display: flex;
-  margin: 10px;
+  /* margin: 10px; */
   width: 100%;
   flex-flow: row;
 
@@ -101,17 +102,30 @@ button {
   padding-left: Calc(100vw / 3 + 1vw);
 } */
 
-.loginRegisterPage {
+.pageBackground {
   background-image: url("./images/bg.png");
-  height: 500px; /* You must set a specified height */
-  background-position: center; /* Center the image */
-  background-repeat: no-repeat; /* Do not repeat the image */
+  height: 500px;
+  background-position: center;
+  background-repeat: no-repeat;
   background-size: cover;
   background-color: white;
 }
 
 /* =================================================================================================== */
 
+.data_error {
+  padding-top: 10px;
+  max-width: 275px;
+  border: 0;
+  border-color: white;
+  color: red;
+  font-size: small;
+  /* background-color: #d9f8ff; */
+}
+
+.green {
+  color: green;
+}
 .d-flex {
   display: flex;
 }
@@ -136,6 +150,9 @@ button {
   padding: 20px;
 }
 
+.t-130 {
+  margin-top: 130px;
+}
 .grow1 {
   flex: 1;
 }

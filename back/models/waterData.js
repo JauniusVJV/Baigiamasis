@@ -22,6 +22,10 @@ const waterDataSchema = new Schema({
     type: Boolean,
     required: false,
   },
+  deleted: {
+    type: Boolean,
+    required: false,
+  },
 });
 
 module.exports = mongoose.model("waterDataModel", waterDataSchema);

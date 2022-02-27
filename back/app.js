@@ -12,7 +12,7 @@ mongoose
     "mongodb+srv://adminas1:adminas1@cluster0.r14ou.mongodb.net/WaDeS?retryWrites=true&w=majority"
   )
   .then((res) => {
-    console.log("connection good");
+    console.log("Connection to database - OK. ");
   })
   .catch((e) => {
     console.log(e);

@@ -1,15 +1,16 @@
-import { useRef, useState, useContext } from "react";
+import { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import MainContext from "../context/MainContext";
+import MainContext from "./context/MainContext";
 
-const LoginForm = () => {
-  const { setUser, user } = useContext(MainContext);
+const DashBoard = () => {
+  let { loggedIn, activePage, user } = useContext(MainContext);
   const nav = useNavigate();
   const userNameRef = useRef();
   const passwordRef = useRef();
 
   const [error, setError] = useState(null);
 
+  function checkLogin() {}
   async function login() {
     const user = {
       userName: userNameRef.current.value,
@@ -32,8 +33,6 @@ const LoginForm = () => {
     if (data.success) {
       localStorage.setItem("secret", data.secret);
       localStorage.setItem("name", data.userName);
-      setUser(data);
-      console.log("Ar parėjo useris į state ?: " + user);
       nav("/dash");
     } else {
       setError(data.message);
@@ -41,13 +40,14 @@ const LoginForm = () => {
   }
 
   return (
-    <div className="d-flex column form">
-      <input type="text" ref={userNameRef} placeholder=" user name" />
-      <input type="text" ref={passwordRef} placeholder=" password" />
-      <button onClick={login}>Login</button>
+    <div className="d-flex ">
+      Dashboard component
+      {/* <input type="text" ref={userNameRef} placeholder=" user name" /> */}
+      {/* <input type="text" ref={passwordRef} placeholder=" password" /> */}
+      {/* <button onClick={}>Login</button> */}
       <p className="data_error">{error}</p>
     </div>
   );
 };
 
-export default LoginForm;
+export default DashBoard;
