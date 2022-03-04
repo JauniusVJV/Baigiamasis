@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import MainContext from "../context/MainContext";
 
 const LoginForm = () => {
-  const { setUser, user } = useContext(MainContext);
+  const { setUser, setLoggedIn } = useContext(MainContext);
   const nav = useNavigate();
   const userNameRef = useRef();
   const passwordRef = useRef();
@@ -11,7 +11,7 @@ const LoginForm = () => {
   const [error, setError] = useState(null);
 
   async function login() {
-    const user = {
+    const userL = {
       userName: userNameRef.current.value,
       password: passwordRef.current.value,
     };
@@ -21,27 +21,26 @@ const LoginForm = () => {
       headers: {
         "content-type": "application/json",
       },
-      body: JSON.stringify(user),
+      body: JSON.stringify(userL),
     };
 
     const res = await fetch("http://localhost:4000/login", options);
     const data = await res.json();
 
-    // console.log(data);
-
     if (data.success) {
       localStorage.setItem("secret", data.secret);
       localStorage.setItem("name", data.userName);
-      setUser(data);
-      console.log("Ar parėjo useris į state ?: " + user);
-      nav("/dash");
+      localStorage.setItem("user", data.user);
+      setUser(data.user);
+      setLoggedIn(true);
+      nav("/board");
     } else {
       setError(data.message);
     }
   }
 
   return (
-    <div className="d-flex column form">
+    <div className="login d-flex column form ">
       <input type="text" ref={userNameRef} placeholder=" user name" />
       <input type="text" ref={passwordRef} placeholder=" password" />
       <button onClick={login}>Login</button>

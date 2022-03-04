@@ -14,6 +14,10 @@ const waterMeterSchema = new Schema({
     type: String,
     required: true,
   },
+  deleted: {
+    type: Boolean,
+    required: false,
+  },
 });
 
 module.exports = mongoose.model("waterMeterModel", waterMeterSchema);

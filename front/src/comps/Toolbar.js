@@ -2,9 +2,12 @@ import { Link } from "react-router-dom";
 import React, { useContext } from "react";
 import logo from "../images/logo2.png";
 import MainContext from "../context/MainContext";
+// import { useNavigate } from "react-router-dom";
 
 const Toolbar = () => {
-  let { loggedIn, activePage } = useContext(MainContext);
+  const { loggedIn, activePage } = useContext(MainContext);
+  // const nav = useNavigate();
+
   return (
     <div className="toolbar">
       <div className="logo_container">
@@ -12,56 +15,42 @@ const Toolbar = () => {
         <p className="logo_text">Wawe</p>
       </div>
       <div className="links">
-        {console.log("Toolbar comp. - ActivePage: ", activePage, " LoggedIn: ", loggedIn)}
         {/* LOGIN */}
-        {!(activePage === "login" || loggedIn) && (
+        {!loggedIn && !(activePage === "login") && (
           <div>
             <Link className="link" to="/">
               Login
             </Link>
-            |
           </div>
         )}
         {/* REGISTER (Add new user) */}
-        {!(activePage === "register" || loggedIn) && (
+        {!(activePage === "register") && (
           <div>
-            <Link className="link" to="/registerUser">
+            <Link className="link" to="/registeruser">
               Register
             </Link>
-            |
           </div>
         )}
 
-        {/* Add Water meter */}
-        {(!activePage === "addWaterMeter" || loggedIn) && (
+        {/* Board */}
+        {loggedIn && !(activePage === "board") && (
           <div>
-            <Link className="link" to="/addwatermeter">
-              Add Water meter
+            <Link className="link" to="/board">
+              Dashboard
             </Link>
-            |
-          </div>
-        )}
-
-        {/* Add water data */}
-        {(!activePage === "addWaterData" || loggedIn) && (
-          <div>
-            <Link className="link" to="/adddata">
-              Add Water data
-            </Link>
-            |
           </div>
         )}
 
         {/* Logout */}
-        {!(activePage === "logout") && loggedIn && (
+        {loggedIn && !(activePage === "logout") && (
           <div>
             <Link className="link" to="/logout">
               Logout
             </Link>
-            |
           </div>
         )}
 
+        {/* About */}
         {!(activePage === "about") && (
           <div>
             <Link className="link" to="/about">

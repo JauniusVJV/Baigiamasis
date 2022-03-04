@@ -16,7 +16,19 @@ const organisationSchema = new Schema({
   },
   addressID: {
     type: String,
-    required: true,
+    required: false,
+  },
+  userID: {
+    type: String,
+    required: false,
+  },
+  objectID: {
+    type: String,
+    required: false,
+  },
+  deleted: {
+    type: Boolean,
+    required: false,
   },
 });
 

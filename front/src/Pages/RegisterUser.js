@@ -10,7 +10,7 @@ const RegisterUserPage = () => {
   }, []);
 
   return (
-    <div className="d-flex j-center pageBackground">
+    <div className="d-flex j-center min_page_background">
       <RegisterUserForm />
     </div>
   );

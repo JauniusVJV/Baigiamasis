@@ -1,4 +1,7 @@
 const usersDb = require("../models/users");
+const wmetersDB = require("../models/waterMeter");
+const organisationsDB = require("../models/organisation");
+const adsressesDB = require("../models/address");
 const { v4: uuidv4 } = require("uuid");
 
 module.exports = {
@@ -13,50 +16,116 @@ module.exports = {
     user.email = email;
     user.phone = phone;
     user.secret = uuidv4();
-    console.log(user);
     await user.save();
     res.send({ success: true, secret: user.secret });
   },
 
-  //   getSingle: async (req, res) => {
-  //     const { id } = req.params;
-  //     const product = await productDb.findOne({ _id: id });
-  //     res.send({ product });
-  //   },
-
   loginUser: async (req, res) => {
-    console.log("On login.");
     const { userName, password } = req.body;
     const user = await usersDb.findOne({ userName: userName, password: password });
-    console.log("User ?: " + user);
-    res.send({ user });
+    res.send({ success: true, user });
   },
 
-  //   createProduct: async (req, res) => {
-  //     const { title, image, price } = req.body;
-  //     const product = new productDb();
-  //     product.title = title;
-  //     product.image = image;
-  //     product.price = price;
-  //     product.quantity = 1;
-  //     await product.save();
+  createOrganisation: async (req, res) => {
+    const { orgTitle, code, codeVAT, addressID, userID, objectID } = req.body;
+    const org = new organisationsDB();
+    org.orgTitle = orgTitle;
+    org.code = code;
+    org.codeVAT = codeVAT;
+    org.addressID = addressID;
+    org.userID = userID;
+    org.objectID = objectID;
+    await org.save();
+    res.send({ success: true });
+  },
 
-  //     res.send({ success: true });
-  //   },
-  //   getAll: async (req, res) => {
-  //     const products = await productDb.find();
-  //     res.send({ products });
-  //   },
+  getOrganizations: async (req, res) => {
+    const { userID } = req.params;
+    const org = await organisationsDB.find({ userID });
+    res.send(org);
+  },
 
-  //   getSingle: async (req, res) => {
-  //     const { id } = req.params;
-  //     const product = await productDb.findOne({ _id: id });
-  //     res.send({ product });
-  //   },
+  deleteOrganization: async (req, res) => {
+    const { id } = req.params;
+    await organisationsDB.findOneAndDelete({ _id: id });
+    res.send({ success: true });
+  },
 
-  //   deleteProduct: async (req, res) => {
-  //     const { id } = req.params;
-  //     await productDb.findOneAndDelete({ _id: id });
-  //     res.send({ success: true });
-  //   },
+  updateOrganisation: async (req, res) => {
+    const { orgTitle, code, codeVAT, _id } = req.body;
+    const org = await organisationsDB.updateOne(
+      { _id: _id },
+      { orgTitle: orgTitle, code: code, codeVAT: codeVAT }
+    );
+    res.send({ success: true });
+  },
+
+  //
+  // const addressSchema = new Schema({
+  // country: { type: String, required: true },
+  //   city: { type: String, required: true },
+  //   street: {  //     type: String,  //     required: true,  //   },
+  //   number: {  //     type: String,  //     required: true,  //   },
+  //   flatNumber: {  //     type: String,  //     required: false,  //   },
+  //   userID: {  //     type: String,  //     required: false,  //   },
+  //   objectID: {  //     type: String,  //     required: false,  //   },
+  //   deleted: {  //     type: Boolean,  //     required: false,  //   },
+  // });
+  //
+
+  createAddress: async (req, res) => {
+    const { country, city, street, number, flatNumber, userID, objectID, deleted } = req.body;
+    const addresses = new adsressesDB();
+    addresses.country = country;
+    addresses.city = city;
+    addresses.street = street;
+    addresses.number = number;
+    addresses.flatNumber = flatNumber;
+    addresses.userID = userID;
+    await addresses.save();
+    res.send({ success: true });
+  },
+
+  getAddresses: async (req, res) => {
+    const { userID } = req.params;
+    const addresses = await adsressesDB.find({ userID }); // { userID: userID }
+    res.send(addresses);
+  },
+
+  deleteAddress: async (req, res) => {
+    const { id } = req.params;
+    await adsressesDB.findOneAndDelete({ _id: id });
+    res.send({ success: true });
+  },
+
+  updateAddress: async (req, res) => {
+    const { country, city, street, number, flatNumber, _id } = req.body;
+    const org = await adsressesDB.updateOne(
+      { _id: _id },
+      { country, city, street, number, flatNumber }
+    );
+    res.send({ success: true });
+  },
+
+  addWmeter: async (req, res) => {
+    const { wmNumber, otherInfo, userID } = req.body;
+    const wmeter = new wmetersDB();
+    wmeter.wmNumber = wmNumber;
+    wmeter.otherInfo = otherInfo;
+    wmeter.userID = userID;
+    await wmeter.save();
+    res.send({ success: true });
+  },
+
+  getWmeters: async (req, res) => {
+    const { userID } = req.params;
+    const wmeters = await wmetersDB.find({ userID });
+    res.send(wmeters);
+  },
+
+  deleteWmeter: async (req, res) => {
+    const { id } = req.params;
+    await wmetersDB.findOneAndDelete({ _id: id });
+    res.send({ success: true });
+  },
 };

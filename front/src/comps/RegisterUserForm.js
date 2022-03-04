@@ -1,8 +1,6 @@
 import { useRef, useState } from "react";
-import { useNavigate } from "react-router-dom";
 
 const RegisterUserForm = () => {
-  const nav = useNavigate();
   const userNameRef = useRef();
   const passwordRef = useRef();
   const passwordTwoRef = useRef();
@@ -36,17 +34,13 @@ const RegisterUserForm = () => {
 
     const res = await fetch("http://localhost:4000/registerUser", options);
     const data = await res.json();
-    console.log(data);
 
     if (data.success) {
       setError("User created. Please login to continue.");
       setSuccessRegistration(true);
-      // nav("/");
     } else {
       setSuccessRegistration(false);
       setError(data.message);
-      console.log("Else " + data.message);
-      console.log("Else SuccReg: " + successRegistration);
     }
   }
 

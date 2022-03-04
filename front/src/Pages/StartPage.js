@@ -2,19 +2,18 @@ import { useEffect, useContext } from "react";
 import LoginForm from "../comps/LoginForm";
 import MainContext from "../context/MainContext";
 
-const MainPage1 = () => {
-  const { setActivePage, activePage } = useContext(MainContext);
+const StartPage = () => {
+  const { setActivePage } = useContext(MainContext);
 
   useEffect(() => {
     setActivePage("login");
   }, []);
 
-  console.log("MainPage1 setActivePage activePage: ", activePage);
   return (
-    <div className="d-flex j-center pageBackground">
+    <div className="d-flex j-center min_page_background">
       <LoginForm />
     </div>
   );
 };
 
-export default MainPage1;
+export default StartPage;

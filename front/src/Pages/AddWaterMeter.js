@@ -9,7 +9,6 @@ const AddWaterMeter = () => {
     setActivePage("addWaterMeter");
   }, []);
 
-  console.log("addWaterMeter activePage: ", activePage);
   return (
     <div className="d-flex j-center loginRegisterPage">
       <LoginForm />
